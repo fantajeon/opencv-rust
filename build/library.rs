@@ -387,9 +387,8 @@ impl Library {
 		}
 		let opencv = opencv.ok_or_else(|| errors.join(", "))?;
 
-		let version = Self::version_from_include_paths(&opencv.include_paths);
-
 		let include_paths = Self::process_env_var_list(include_paths, opencv.include_paths);
+		let version = Self::version_from_include_paths(&include_paths);
 
 		let mut cargo_metadata = opencv.cargo_metadata;
 
